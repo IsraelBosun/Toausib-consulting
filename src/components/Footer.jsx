@@ -148,20 +148,25 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
+      {/* Bottom Bar */}
       <div className="border-t border-navy">
         <div className="container-custom py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0"> 
             <p className="text-gray-400 text-sm">
               © {currentYear} {companyInfo.name}. All rights reserved.
             </p>
-            <div className="flex space-x-6 text-sm text-gray-400">
-              <Link href="#" className="hover:text-gold transition-colors duration-300">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="hover:text-gold transition-colors duration-300">
-                Terms of Service
-              </Link>
-            </div>
+            <p className="text-gray-500 text-sm">
+              Built by{' '}
+              <a
+                href="https://bluehydradev.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold hover:underline hover:text-gold/90 transition"
+              >
+                Bluehydra
+              </a>
+            </p>
+
           </div>
         </div>
       </div>
