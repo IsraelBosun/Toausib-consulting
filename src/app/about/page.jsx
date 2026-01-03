@@ -526,7 +526,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-10">
             {leadership.map((leader, idx) => (
               <div key={idx} className="bg-white p-8 border-2 border-gray-200">
-                <img src={leader.image} alt={leader.name} className="w-32 h-32 object-cover mb-4" />
+                <img src={leader.image} alt={leader.name} className="w-32 h-35 object-cover mb-4" />
                 <h3 className="text-xl font-semibold">{leader.name}</h3>
                 <p className="text-gold">{leader.title}</p>
                 <p className="text-sm text-warm-gray mb-4">{leader.credentials}</p>
