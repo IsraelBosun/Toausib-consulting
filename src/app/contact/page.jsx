@@ -23,11 +23,43 @@ export default function ContactPage() {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormStatus('submitting');
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setFormStatus('submitting');
 
-    setTimeout(() => {
+  //   setTimeout(() => {
+  //     setFormStatus('success');
+  //     setFormData({
+  //       name: '',
+  //       email: '',
+  //       phone: '',
+  //       company: '',
+  //       service: '',
+  //       message: ''
+  //     });
+
+  //     setTimeout(() => {
+  //       setFormStatus('idle');
+  //     }, 5000);
+  //   }, 1500);
+  // };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setFormStatus('submitting');
+
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
       setFormStatus('success');
       setFormData({
         name: '',
@@ -41,8 +73,20 @@ export default function ContactPage() {
       setTimeout(() => {
         setFormStatus('idle');
       }, 5000);
-    }, 1500);
-  };
+    } else {
+      setFormStatus('error');
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 5000);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    setFormStatus('error');
+    setTimeout(() => {
+      setFormStatus('idle');
+    }, 5000);
+  }
+};
 
   const services = [
     "Tax Advisory & Planning",
