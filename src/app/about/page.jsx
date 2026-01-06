@@ -378,6 +378,13 @@ export default function AboutPage() {
       credentials: "ACA, ACTI",
       bio: "Partner, Financial and Business Advisory at TOAUSIB Consulting Ltd, and a results-driven financial modeling and advisory professional with strong expertise in financial analysis, strategic planning, and data-driven decision support. He supports organisations in evaluating opportunities, managing risk, and optimising resources through robust financial models and evidence-based insights, enabling informed decision-making and sustainable growth.",
       image: "/images/robert.jpg"
+    },
+    {
+      name: "Mr. Goshen Olatunbosun",
+      title: "Manager, Digital Strategy, Client Engagement & Practice Development",
+      credentials: "ACA",
+      bio: "Manager, Digital Strategy, Client Engagement & Practice Development at TOAUSIB Consulting Ltd, and a Chartered Accountant and digital strategy professional with a strong blend of expertise in accounting, finance, and digital marketing. He supports professional services organisations in strengthening market visibility, enhancing client engagement, and communicating value through data-driven digital strategies and structured financial insights. With hands-on experience in financial reporting, account reconciliation, performance analysis, and Nigerian tax compliance, he combines technical rigor with strategic communication to drive brand credibility, regulatory compliance, and sustainable business growth.",
+      image: "/images/goshen.jpeg"
     }
   ];
 

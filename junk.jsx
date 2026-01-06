@@ -1,8 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { companyInfo } from '../../../lib/data';
-
+import { useState } from 'react';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -14,7 +13,7 @@ export default function ContactPage() {
     message: ''
   });
 
-  const [formStatus, setFormStatus] = useState('idle');
+  const [formStatus, setFormStatus] = useState('idle'); // idle, submitting, success, error
 
   const handleChange = (e) => {
     setFormData({
@@ -27,6 +26,7 @@ export default function ContactPage() {
     e.preventDefault();
     setFormStatus('submitting');
 
+    // Simulate form submission
     setTimeout(() => {
       setFormStatus('success');
       setFormData({
@@ -38,6 +38,7 @@ export default function ContactPage() {
         message: ''
       });
 
+      // Reset success message after 5 seconds
       setTimeout(() => {
         setFormStatus('idle');
       }, 5000);
@@ -64,9 +65,7 @@ export default function ContactPage() {
       ),
       title: "Visit Our Office",
       detail: companyInfo.addresses,
-      action: "Get Directions",
-      type: "location",
-      link: `https://www.google.com/maps?q=${companyInfo.mapCoordinates.lat},${companyInfo.mapCoordinates.lng}`
+      action: "Get Directions"
     },
     {
       icon: (
@@ -76,9 +75,7 @@ export default function ContactPage() {
       ),
       title: "Email Us",
       detail: [companyInfo.email],
-      action: "Send Email",
-      type: "email",
-      link: `mailto:${companyInfo.email}`
+      action: "Send Email"
     },
     {
       icon: (
@@ -87,10 +84,8 @@ export default function ContactPage() {
         </svg>
       ),
       title: "Call Us",
-      detail: companyInfo.phones,
-      action: "Call Now",
-      type: "phone",
-      link: `tel:${companyInfo.phones[0].replace(/\s/g, '')}`
+      detail: [companyInfo.phones],
+      action: "Call Now"
     }
   ];
 
@@ -133,41 +128,52 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Methods */}
-      <section className="py-16 bg-white">
-        <div className="container-custom">
-          <div className="grid md:grid-cols-3 gap-8">
-            {contactMethods.map((method, idx) => (
-              <div
-                key={idx}
-                className="bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 p-8 text-center hover:border-gold hover:shadow-xl transition-all duration-500 group"
-              >
-                <div className="w-16 h-16 bg-navy text-white flex items-center justify-center mx-auto mb-6 group-hover:bg-gold transition-colors duration-500">
-                  {method.icon}
-                </div>
-
-                <h3 className="text-xl font-serif text-navy mb-3 group-hover:text-gold transition-colors duration-300">
-                  {method.title}
-                </h3>
-
-                <div className="text-warm-gray mb-4 space-y-2">
-                  {method.detail.map((item, i) => (
-                    <p key={i}>{item}</p>
-                  ))}
-                </div>
-
-                <a
-                  href={method.link}
-                  target={method.type === 'location' ? '_blank' : undefined}
-                  rel={method.type === 'location' ? 'noopener noreferrer' : undefined}
-                  className="text-navy hover:text-gold font-medium text-sm transition-colors duration-300"
-                >
-                  {method.action} →
-                </a>
-              </div>
-            ))}
+<section className="py-16 bg-white">
+  <div className="container-custom">
+    <div className="grid md:grid-cols-3 gap-8">
+      {contactMethods.map((method, idx) => (
+        <div
+          key={idx}
+          className="bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 p-8 text-center hover:border-gold hover:shadow-xl transition-all duration-500 group"
+        >
+          <div className="w-16 h-16 bg-navy text-white flex items-center justify-center mx-auto mb-6 group-hover:bg-gold transition-colors duration-500">
+            {method.icon}
           </div>
+
+          <h3 className="text-xl font-serif text-navy mb-3 group-hover:text-gold transition-colors duration-300">
+            {method.title}
+          </h3>
+
+          <div className="text-warm-gray mb-4 space-y-2">
+            {method.detail.map((item, i) => {
+              if (method.type === "phone") {
+                return (
+                  <a key={i} href={`tel:${item}`} className="block hover:text-gold">
+                    {item}
+                  </a>
+                );
+              }
+
+              if (method.type === "email") {
+                return (
+                  <a key={i} href={`mailto:${item}`} className="block hover:text-gold">
+                    {item}
+                  </a>
+                );
+              }
+
+              return <p key={i}>{item}</p>;
+            })}
+          </div>
+
+          <button className="text-navy hover:text-gold font-medium text-sm transition-colors duration-300">
+            {method.action} →
+          </button>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
 
       {/* Main Contact Section */}
@@ -189,7 +195,7 @@ export default function ContactPage() {
                   </div>
                 )}
 
-                <div className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name */}
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-navy mb-2">
@@ -298,13 +304,13 @@ export default function ContactPage() {
 
                   {/* Submit Button */}
                   <button
-                    onClick={handleSubmit}
+                    type="submit"
                     disabled={formStatus === 'submitting'}
                     className="btn-primary w-full text-base disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
                   </button>
-                </div>
+                </form>
               </div>
             </div>
 
@@ -334,9 +340,11 @@ export default function ContactPage() {
                     </svg>
                     <div>
                       <p className="font-semibold text-navy mb-1">Address</p>
-                      {companyInfo.addresses.map((address, i) => (
-                        <p key={i} className="text-warm-gray text-sm mb-2">{address}</p>
-                      ))}
+                      <p className="text-warm-gray text-sm">
+                        {companyInfo.addresses.map((a, i) => (
+                          <p key={i} className="text-sm mb-2">{a}</p>
+                        ))}
+                      </p>
                     </div>
                   </div>
 
@@ -346,11 +354,11 @@ export default function ContactPage() {
                     </svg>
                     <div>
                       <p className="font-semibold text-navy mb-1">Phone</p>
-                      {companyInfo.phones.map((phone, i) => (
-                        <a key={i} href={`tel:${phone.replace(/\s/g, '')}`} className="block text-sm text-warm-gray hover:text-gold">
-                          {phone}
-                        </a>
-                      ))}
+                      <p className="text-warm-gray text-sm">
+              {companyInfo.phones.map((p, i) => (
+                <a key={i} href={`tel:${p}`} className="block text-sm hover:text-gold">{p}</a>
+              ))}                        
+              </p>
                     </div>
                   </div>
 
@@ -360,7 +368,7 @@ export default function ContactPage() {
                     </svg>
                     <div>
                       <p className="font-semibold text-navy mb-1">Email</p>
-                      <a href={`mailto:${companyInfo.email}`} className="text-warm-gray text-sm hover:text-gold">{companyInfo.email}</a>
+                      <p className="text-warm-gray text-sm">{companyInfo.email}</p>
                     </div>
                   </div>
                 </div>
@@ -395,7 +403,7 @@ export default function ContactPage() {
             For urgent matters, please call us directly during office hours.
           </p>
           <a
-            href={`tel:${companyInfo.phones[0].replace(/\s/g, '')}`}
+            href={`tel:${companyInfo.phones[0]}`}
             className="inline-flex items-center px-8 py-4 bg-gold text-white font-medium tracking-wide hover:bg-white hover:text-navy transition-all duration-300"
           >
             <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
