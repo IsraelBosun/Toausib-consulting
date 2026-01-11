@@ -22,28 +22,6 @@ export default function ContactPage() {
       [e.target.name]: e.target.value
     });
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setFormStatus('submitting');
-
-  //   setTimeout(() => {
-  //     setFormStatus('success');
-  //     setFormData({
-  //       name: '',
-  //       email: '',
-  //       phone: '',
-  //       company: '',
-  //       service: '',
-  //       message: ''
-  //     });
-
-  //     setTimeout(() => {
-  //       setFormStatus('idle');
-  //     }, 5000);
-  //   }, 1500);
-  // };
-
   const handleSubmit = async (e) => {
   e.preventDefault();
   setFormStatus('submitting');
