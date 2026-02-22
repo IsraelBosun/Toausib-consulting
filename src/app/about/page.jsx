@@ -32,12 +32,19 @@ export default function AboutPage() {
       credentials: "",
       bio: "Senior Manager / Lead Analyst in Financial Analytics & AI Advisory at TOAUSIB Consulting Ltd, and a Chartered Accountant with a strong interest in the application of artificial intelligence, data analytics, and emerging technologies in financial decision-making and business strategy. She has a solid foundation in accounting and finance, with expertise in financial analysis, performance evaluation, and data-driven insight generation using advanced Excel-based analytics and financial tools. She supports advisory engagements by translating complex financial and operational data into actionable insights that enhance strategic planning, risk management, governance, and organizational performance. She also contributes to TOAUSIB’s analytics and innovation initiatives, including AI-enabled advisory solutions, financial analytics frameworks, and research on fintech and digital transformation to support sustainable growth across sectors.",
       image: "/images/vanessa.jpeg"
+    },
+      {
+      name: "Ms. Grace  Collins",
+      title: "Executive Director / Senior Partner – Compliance & Regulatory Advisory",
+      credentials: "",
+      bio: "Grace Collins is the Executive Director and Senior Partner in charge of Compliance and Regulatory Services at TOAUSIB Consulting Ltd. She holds a degree in Accounting and has over 12 years’ professional experience in accounting, auditing, regulatory compliance, and statutory reporting. Her core competencies include regulatory compliance reviews, compliance audits, internal control assessment, statutory filings, and financial reporting support across diverse sectors. She provides technical leadership in the design and implementation of compliance frameworks aligned with applicable laws, professional standards, and sound corporate governance practices. Grace plays a critical role in ensuring clients maintain regulatory compliance, manage compliance risk effectively, and uphold strong financial governance.",
+      image: "https://placehold.co/400x400?text=Grace+Collins"
     }
   ];
 
   const timeline = [
     {
-      year: "2010",
+      year: "2014",
       title: "Foundation",
       description: "TOAUSIB Consulting Ltd was established to provide objective and value-driven professional services."
     },

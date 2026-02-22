@@ -29,13 +29,19 @@ export default function CredentialsStrip() {
             
             <div className="space-y-4 text-gray-300 leading-relaxed">
               <p className="text-lg">
-                {companyInfo.name} is a leading professional services firm 
-                specializing in audit, tax, and advisory services across Nigeria.
+                 At {companyInfo.name} we understand that financial integrity is the foundation of economic development and institutional credibility.
+                  Our team of chartered professionals delivers:
+                  Independent audit and assurance services
+                  Strategic tax advisory and regulatory compliance
+                  Forensic accounting and financial investigation
+                  Risk management and internal control systems design
+                  Business advisory and financial restructuring
+                  With professional operations dating back to 2014, our 
+                  firm brings over a decade of hands-on experience navigating Nigeria’s regulatory and business environment
               </p>
               
               <p>
-                With over {companyInfo.yearEstablished && new Date().getFullYear() - parseInt(companyInfo.yearEstablished)} years 
-                of dedicated service, we combine deep industry knowledge with technical 
+                Since commencing operations in {companyInfo.yearEstablished} we combine deep industry knowledge with technical 
                 expertise to deliver solutions that drive sustainable growth and 
                 regulatory compliance.
               </p>
